@@ -1,0 +1,62 @@
+name: Test_DegAE_Pretrain_Restormer
+suffix: ~  # add suffix to saved images
+model: ddg_1decoder
+distortion: sr
+scale: 1
+crop_border: 0  # crop border when evaluation. If None(~), crop the scale pixels
+gpu_ids: []
+
+datasets:
+  test_1:
+    name: set14
+    mode: DDG_test
+    dataroot_HQ: /opt/data/common/SR_testsets/Set14/HR/
+    dataroot_LQ: ~
+    need_GT: true
+  
+    
+#### network structures
+network_DDE_Encoder:
+  which_model_DDE_Encoder: DeepDegradationEncoder_v2 # DeepDegradationEncoder_v2 | DeepDegradationEncoder_v1 | DeepDegradationEncoder_v3 | ConditionNet_GFM
+  in_nc: 3
+  out_nc: 3
+  nf: 64
+  nb: 16
+  pretrained_DDR_model: ../pretrained_DDR_models/B02_MSRGAN_wGR_i_DIV2K_clean/models/400000_G.pth
+
+network_DDE:
+  which_model_DDE: Restormer_Backbone
+  inp_channels: 3
+  out_channels: 64
+  dim: 48
+  num_blocks: [4,6,6,8]
+  num_refinement_blocks: 4
+  heads: [1,2,4,8]
+  ffn_expansion_factor: 2.66
+  bias: False
+  LayerNorm_type: WithBias
+  dual_pixel_task: False
+  global_residual: False
+
+network_DDG:
+  which_model_DDG: MSRResNet_Head # RCAN_Head | MSRResNet_Head
+  
+  in_nc: 64
+  out_nc: 3
+  upscale: 1
+  
+  modul_channels: 512
+  require_modulation: true
+  modulation_mode: GFM
+  
+
+
+#### path
+path:
+  pretrain_model_DDG_Encoder: ../experiments/Pretrain_DegAE_Restormer/DDG_Encoder.pth
+  pretrain_model_PretrainEncoder: ../experiments/Pretrain_DegAE_Restormer/PretrainEncoder.pth
+  pretrain_model_PretrainDecoder: ../experiments/Pretrain_DegAE_Restormer/PretrainDecoder.pth
+
+  strict_load: true
+  
+  #fea_save_path: ~

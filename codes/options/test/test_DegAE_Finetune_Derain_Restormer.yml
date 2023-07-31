@@ -1,0 +1,77 @@
+name: Test_DegAE_Finetune_Derain_Restormer
+suffix: ~  # add suffix to saved images
+model: ddg_encoder_decoder_mse
+distortion: sr
+scale: 1
+crop_border: 0  # crop border when evaluation. If None(~), crop the scale pixels
+gpu_ids: []
+
+datasets:
+  test_0:
+    name: Test100
+    mode: LQGT  # DDG_val | DDG_val_blur | DDG_val_noise | DDG_val_jpeg
+    dataroot_GT: /opt/data/common/Derain/test/Test100/target
+    dataroot_LQ: /opt/data/common/Derain/test/Test100/input
+
+  test_1:
+    name: Rain100L_test
+    mode: LQGT  # DDG_val | DDG_val_blur | DDG_val_noise | DDG_val_jpeg
+    dataroot_GT: /opt/data/common/Derain/test/Rain100L/target
+    dataroot_LQ: /opt/data/common/Derain/test/Rain100L/input
+
+  test_2:
+    name: Rain100H_test
+    mode: LQGT  # DDG_val | DDG_val_blur | DDG_val_noise | DDG_val_jpeg
+    dataroot_GT: /opt/data/common/Derain/test/Rain100H/target
+    dataroot_LQ: /opt/data/common/Derain/test/Rain100H/input
+
+  test_3:
+    name: Test1200
+    mode: LQGT  # DDG_val | DDG_val_blur | DDG_val_noise | DDG_val_jpeg
+    dataroot_GT: /opt/data/common/Derain/test/Test1200/target
+    dataroot_LQ: /opt/data/common/Derain/test/Test1200/input
+
+  test_4:
+    name: Test2800
+    mode: LQGT  # DDG_val | DDG_val_blur | DDG_val_noise | DDG_val_jpeg
+    dataroot_GT: /opt/data/common/Derain/test/Test2800/target
+    dataroot_LQ: /opt/data/common/Derain/test/Test2800/input
+
+
+#### network structures
+network_DDE:
+  which_model_DDE: Restormer_Backbone
+  inp_channels: 3
+  out_channels: 64
+  dim: 48
+  num_blocks: [4, 6, 6, 8]
+  num_refinement_blocks: 4
+  heads: [1, 2, 4, 8]
+  ffn_expansion_factor: 2.66
+  bias: False
+  LayerNorm_type: WithBias
+  dual_pixel_task: False
+  global_residual: False
+  scale: 1
+
+network_DDG:
+  which_model_DDG: One_Conv_Head  # RCAN_Head | MSRResNet_Head
+  
+  in_nc: 64
+  out_nc: 3
+  upscale: 1
+  
+  modul_channels: 512
+  require_modulation: false
+  
+  
+
+
+#### path
+path:
+  pretrain_model_Encoder: ../experiments/DegAE_Restormer_Finetune/ComplexDerain/Restormer_Derain_Encoder.pth
+  pretrain_model_Decoder1: ../experiments/DegAE_Restormer_Finetune/ComplexDerain/Restormer_Derain_Decoder.pth
+
+  strict_load: true
+  
+  

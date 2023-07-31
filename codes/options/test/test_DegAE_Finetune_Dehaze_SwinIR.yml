@@ -1,0 +1,50 @@
+name: Test_DegAE_Finetune_Dehaze_SwinIR
+suffix: ~  # add suffix to saved images
+model: ddg_encoder_decoder_mse
+distortion: sr
+scale: 1
+crop_border: 0  # crop border when evaluation. If None(~), crop the scale pixels
+gpu_ids: []
+
+datasets:
+  test_1:
+    name: SOTS_indoor
+    mode: LQGT_RESIDE
+    dataroot_GT: /opt/data/common/Dehaze/SOTS/indoor/nyuhaze500/gt
+    dataroot_LQ: /opt/data/common/Dehaze/SOTS/indoor/nyuhaze500/hazy
+
+
+#### network structures
+network_DDE:
+  which_model_DDE: SwinIR_Backbone
+  in_nc: 3
+  window_size: 8
+  depths: [6, 6, 6, 6, 6, 6]
+  num_heads: [6, 6, 6, 6, 6, 6]
+  nf: 180
+  mlp_ratio: 2
+  resi_connection: 1conv
+  GR: False
+  scale: 1
+
+network_DDG:
+  which_model_DDG: One_Conv_Head  # RCAN_Head | MSRResNet_Head
+  
+  in_nc: 180
+  out_nc: 3
+  upscale: 1
+  
+  modul_channels: 512
+  require_modulation: false
+  
+  
+
+
+#### path
+path:
+  pretrain_model_Encoder: ../experiments/DegAE_SwinIR_Finetune/Dehaze/SwinIR_Dehaze_Encoder.pth
+  pretrain_model_Decoder1: ../experiments/DegAE_SwinIR_Finetune/Dehaze/SwinIR_Dehaze_Decoder.pth
+
+  strict_load: true
+  
+  

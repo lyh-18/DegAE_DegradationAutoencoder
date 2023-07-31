@@ -1,0 +1,58 @@
+name: Test_DegAE_Pretrain_SwinIR
+suffix: ~  # add suffix to saved images
+model: ddg_1decoder
+distortion: sr
+scale: 1
+crop_border: 0  # crop border when evaluation. If None(~), crop the scale pixels
+gpu_ids: []
+
+datasets:
+  test_1:
+    name: set14
+    mode: DDG_test
+    dataroot_HQ: /opt/data/common/SR_testsets/Set14/HR/
+    dataroot_LQ: ~
+    need_GT: true
+  
+    
+#### network structures
+network_DDE_Encoder:
+  which_model_DDE_Encoder: DeepDegradationEncoder_v2 # DeepDegradationEncoder_v2 | DeepDegradationEncoder_v1 | DeepDegradationEncoder_v3 | ConditionNet_GFM
+  in_nc: 3
+  out_nc: 3
+  nf: 64
+  nb: 16
+  pretrained_DDR_model: ../pretrained_DDR_models/B02_MSRGAN_wGR_i_DIV2K_clean/models/400000_G.pth
+
+network_DDE:
+  which_model_DDE: SwinIR_Backbone
+  in_nc: 3
+  window_size: 8
+  depths: [6, 6, 6, 6, 6, 6]
+  num_heads: [6, 6, 6, 6, 6, 6]
+  nf: 180
+  mlp_ratio: 2 
+  resi_connection: '1conv' # '1conv' | '3conv'
+  GR: false
+
+network_DDG:
+  which_model_DDG: MSRResNet_Head # RCAN_Head | MSRResNet_Head
+  in_nc: 180
+  out_nc: 3
+  upscale: 1
+
+  modul_channels: 512
+  require_modulation: true
+  modulation_mode: GFM
+  
+
+
+#### path
+path:
+  pretrain_model_DDG_Encoder: ../experiments/Pretrain_DegAE_SwinIR/DDG_Encoder.pth
+  pretrain_model_PretrainEncoder: ../experiments/Pretrain_DegAE_SwinIR/PretrainEncoder.pth
+  pretrain_model_PretrainDecoder: ../experiments/Pretrain_DegAE_SwinIR/PretrainDecoder.pth
+
+  strict_load: true
+  
+  #fea_save_path: ~
