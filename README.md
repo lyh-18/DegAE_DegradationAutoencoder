@@ -11,7 +11,8 @@ Authors: [Yihao Liu](https://scholar.google.com/citations?user=WRIYcNwAAAAJ&hl=e
 - [2023/7/31] :zap: We have released the codes! Please refer to the following instructions.
 
 ## Method Introduction
-![framework](DegAE.png)
+
+![DegAE](DegAE.png)
 For pretraining, the encoder accepts a degraded input image and outputs the image representation. The degraded input image is synthesized online through a series of degradation operations. The decoder accepts a reference degradation embedding, which is obtained by a degradation representor $\phi$. Then, the decoder attempts to transfer the reference degradation to the corrupted input image. During Finetuning, the decoder is replaced by one convolution layer. We finetune the whole network on downstream tasks such as image dehaze, derain and motion deblur.
 
 ![examples](DegAE_full.png)
