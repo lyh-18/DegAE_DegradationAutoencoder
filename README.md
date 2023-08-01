@@ -16,6 +16,7 @@ For pretraining, the encoder accepts a degraded input image and outputs the imag
 
 ![examples](DegAE_full.png)
 Example results of DegAE pretraining. For instance, given an input noise image and a reference blur image, DegAE attempts to transfer the blur degradation to the input image.
+
 ## Preparation
 
 ### Dependencies
