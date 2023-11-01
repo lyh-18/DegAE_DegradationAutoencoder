@@ -504,29 +504,29 @@ def degradation_transfer_lyh(img_list, clean_prob, blur_prob, gaussian_prob, poi
     
     #blur_prob, gaussian_prob, poisson_prob, speckle_prob, jpeg_prob = 0.7, 0.5, 0.2, 0.2, 0.5
     degradation_record = []
-    
+    lq_list = hq_list.copy()
     if random.random() > clean_prob:
 
         for i in shuffle_order:
             if i == 0:
                 if random.random() < blur_prob:
-                    lq_list = add_blur_list(img_list.copy(), sf=sf)
+                    lq_list = add_blur_list(lq_list.copy(), sf=sf)
                     degradation_record.append('BL')
             elif i == 1:
                 if random.random() < gaussian_prob:
-                    lq_list = add_Gaussian_noise_list(img_list.copy(), noise_level1=2, noise_level2=30)
+                    lq_list = add_Gaussian_noise_list(lq_list.copy(), noise_level1=2, noise_level2=30)
                     degradation_record.append('GN')
             elif i == 2:
                 if random.random() < poisson_prob:
-                    lq_list = add_Poisson_noise_list(img_list.copy())
+                    lq_list = add_Poisson_noise_list(lq_list.copy())
                     degradation_record.append('PN')
             elif i == 3:
                 if random.random() < speckle_prob:
-                    lq_list = add_speckle_noise_list(img_list.copy())
+                    lq_list = add_speckle_noise_list(lq_list.copy())
                     degradation_record.append('SN')
             elif i == 4:
                 if random.random() < jpeg_prob:
-                    lq_list = add_JPEG_noise_list(img_list.copy())
+                    lq_list = add_JPEG_noise_list(lq_list.copy())
                     degradation_record.append('JP')
             else:
                 print('check the shuffle!')
