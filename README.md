@@ -34,10 +34,10 @@ Download the pretrained models and put the downloaded models in the `experiments
 
 |  Phase  |  Task   | Backbone | Pretrained model |
 | :-----: | :-----: | :-----:  | :----:           |
-| Pretrain | Degradation Transfer <br> (Pretext Task) | SwinIR <br>Backbone    | [[Baidu Disk]](https://pan.baidu.com/s/1PNIuya0zk7DgulBW8n_5Sg?pwd=iugr) <br>(token: iugr) |
-| Pretrain | Degradation Transfer <br> (Pretext Task) | Restormer <br>Backbone    | [[Baidu Disk]](https://pan.baidu.com/s/1LS-aIP-kg-s2fl4R0z_dfw?pwd=pcpy) <br>(token: pcpy) |
-| Downstream <br>Finetune | Dehaze (ITS) <br> Complex Derain (Rain13K) <br> Motion Deblur (GoPro)  | SwinIR <br>Backbone    | [[Baidu Disk]](https://pan.baidu.com/s/1zzqordfmiq7vn4XMvr2-9Q?pwd=bk4a)<br> (token: bk4a) |
-| Downstream <br>Finetune | Dehaze (ITS) <br> Complex Derain (Rain13K) <br> Motion Deblur (GoPro)  | Restormer <br>Backbone    | [[Baidu Disk]](https://pan.baidu.com/s/1OmbQLwyQSeADR5863Xo_3w?pwd=7bnf) <br>(token: 7bnf) |
+| Pretrain | Degradation Transfer <br> (Pretext Task) | SwinIR <br>Backbone    | [[Baidu Disk]](https://pan.baidu.com/s/1PNIuya0zk7DgulBW8n_5Sg?pwd=iugr) <br>(token: iugr) <br> [[Google Drive]](https://drive.google.com/file/d/1oVZcYXrgi6xDLhQBWqqFAeh5CYouLjxO/view?usp=sharing)|
+| Pretrain | Degradation Transfer <br> (Pretext Task) | Restormer <br>Backbone    | [[Baidu Disk]](https://pan.baidu.com/s/1LS-aIP-kg-s2fl4R0z_dfw?pwd=pcpy) <br>(token: pcpy) <br>(token: iugr) <br> [[Google Drive]](https://drive.google.com/file/d/1OPKBVsi-5Hta-FrodARe3TECIztypLLo/view?usp=sharing)|
+| Downstream <br>Finetune | Dehaze (ITS) <br> Complex Derain (Rain13K) <br> Motion Deblur (GoPro)  | SwinIR <br>Backbone    | [[Baidu Disk]](https://pan.baidu.com/s/1zzqordfmiq7vn4XMvr2-9Q?pwd=bk4a)<br> (token: bk4a) <br> [[Google Drive]](https://drive.google.com/file/d/1s0p8esGoAz5seclaM7-JF6hoRWzfpYjV/view?usp=sharing)|
+| Downstream <br>Finetune | Dehaze (ITS) <br> Complex Derain (Rain13K) <br> Motion Deblur (GoPro)  | Restormer <br>Backbone    | [[Baidu Disk]](https://pan.baidu.com/s/1OmbQLwyQSeADR5863Xo_3w?pwd=7bnf) <br>(token: 7bnf) <br> [[Google Drive]](https://drive.google.com/file/d/1yMl9ZkWKk73Hx0I-jxo1MDANu27MjUot/view?usp=sharing)|
 
 ## Quick Inference
 ### Pretrain Task: Degradation Autoencoder
