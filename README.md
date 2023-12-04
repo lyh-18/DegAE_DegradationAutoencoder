@@ -66,7 +66,7 @@ python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Dehaze_SwinI
 2. Test the pretrained dehaze model with Restormer backbone.
 ```
 cd codes
-python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Dehaze_SwinIR.yml
+python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Dehaze_Restormer.yml
 ```
 
 #### Complex Derain
@@ -78,7 +78,7 @@ python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Derain_SwinI
 2. Test the pretrained dehaze model with Restormer backbone.
 ```
 cd codes
-python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Derain_SwinIR.yml
+python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Derain_Restormer.yml
 ```
 
 #### Motion Deblur
@@ -90,7 +90,7 @@ python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Deblur_SwinI
 2. Test the pretrained dehaze model with Restormer backbone.
 ```
 cd codes
-python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Deblur_SwinIR.yml
+python test_DegAE_Finetune.py -opt options/test/test_DegAE_Finetune_Deblur_Restormer.yml
 ```
 
 ## Citation
